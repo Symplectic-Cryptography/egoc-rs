@@ -104,8 +104,9 @@ fn main() {
 
     println!("\n--- honest security note ---");
     println!("This demo uses the MCE backend at DEMO sizes. At the candidate parameters");
-    println!("the MCE surface estimates to ~2^208 algebraic / >=2^1064 rank (MEDS");
-    println!("methodology, validated); the lattice backend is estimator-confirmed");
+    println!("the MCE surface estimates to ~2^202 algebraic (band, NEEDS-REVIEW) /");
+    println!("2^240 rank-collision / >=2^1064 MinRank (MEDS methodology, validated);");
+    println!("the lattice backend is estimator-confirmed");
     println!(">=2^186 classical / ~2^146 quantum. See docs/SECURITY.md. lambda=32 here is");
     println!("demo-only (use 128 in production); the bit figures are NOT the demo sizes.");
 }

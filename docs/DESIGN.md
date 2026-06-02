@@ -71,8 +71,8 @@ Each fix targets a specific failure above.
 - **Keys are never hashed or published, and the group is large**
   (`|GLₘ(E) × GLₙ(E)| ≫ 2²⁵⁶`), which removes the confirmation oracle of (2).
 - **Equivalence, not similarity.** A two-sided `GLₘ × GLₙ` action leaves only rank
-  as an orbit invariant, and the rectangular shape (`mc − mr ≥ 6`, lifting the
-  cheapest rank-collision codimension from 1 to 7) randomises even that — so the
+  as an orbit invariant, and the rectangular shape (`mc − mr = 9`, lifting the
+  cheapest rank-collision codimension from 1 to 10) randomises even that — so the
   determinant/Casimir leak (3) disappears.
 - **Named hardness, honest properties.** Hiding reduces to MCE (matrix-code backend)
   or decision-MLWE (lattice backend); binding is computational under MCE-collision

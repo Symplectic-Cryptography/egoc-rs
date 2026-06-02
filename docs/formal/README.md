@@ -21,6 +21,7 @@ remaining step is mechanization in a proof assistant.
 | 3 | lattice binding statistical / ≤ MSIS | ✅ | ✅ | skeleton |
 | 4 | MCE binding ≤ MCE-collision | ✅ | — | skeleton |
 | 5–8 | opening Σ: completeness, soundness, HVZK | ✅ | ✅ | skeleton |
+| 9 | outside the 2024/337 special-orbit regime | ✅ | ✅ (`egoc-attack`, real shape) | n/a |
 
 ## Proven / assumed / open
 

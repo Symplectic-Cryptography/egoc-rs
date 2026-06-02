@@ -10,7 +10,7 @@ working; this file is the summary.
 | Property | Lattice (SHADOW-SIS-FIX) | Matrix-code (EGOC-MCE-R) |
 |---|---|---|
 | Hiding | decision-MLWE, **≥ 2¹⁸⁶ classical / ≈ 2¹⁴⁶ quantum** | MCE (the cheapest attack is the binding-algebraic one below) |
-| Binding | statistical (MSIS), no short collision | computational (MCE-collision) + injective encoder; cheapest attack **≈ 2²⁰⁸** |
+| Binding | statistical (MSIS), no short collision | computational (MCE-collision) + injective encoder; cheapest attack is algebraic, band **≈ 180–202** (NEEDS-REVIEW); rank-collision floor **2²⁴⁰ classical / 2¹⁶⁰ optimistic-quantum** |
 | Tooling | `lattice-estimator` | MEDS-methodology estimate (validated) + CryptographicEstimators |
 | Confidence | estimator-confirmed | bit estimate; needs external review |
 
@@ -55,9 +55,9 @@ room to shrink for efficiency.
 
 ## Matrix-code backend — EGOC-MCE-R (Matrix Code Equivalence, MEDS family)
 
-Candidate parameters: `q = 16777259` (`|E| ≈ 2⁴⁸`), `mr = 22, mc = 28, k = 40,
-ℓ = 8`. Hiding rests on Matrix Code Equivalence, the problem behind the NIST
-candidate MEDS.
+Candidate parameters (`CodeParams::L1`): `q = 16777259` (`|E| ≈ 2⁴⁸`), `mr = 22,
+mc = 31, k = 46, ℓ = 8`. Hiding rests on Matrix Code Equivalence, the problem behind
+the NIST candidate MEDS.
 
 **Assumed (named, studied).** MCE / decisional-MCE-with-planted-structure. MCE is
 Tensor-Isomorphism-complete and believed hard, including against quantum
@@ -68,18 +68,22 @@ external review.
 
 | Attack surface | Cost | Source |
 |---|---|---|
-| Algebraic / bilinear Gröbner (binding) | **≈ 2²⁰⁸** | MEDS §4.3.1 methodology, reimplemented and validated |
-| Leon collision floor | 2¹⁶⁸ (`|E|^{7/2}`) | analytical (rectangular codimension 7) |
+| Algebraic / bilinear Gröbner (cheapest classical) | band **≈ 180–202**, NEEDS-REVIEW | MEDS §4.3.1 methodology, reimplemented and validated |
+| Corank-1 rank collision | 2²⁴⁰ classical / 2¹⁶⁰ optimistic-quantum (`|E|^{cod/2}`, `cod = 10`) | analytical codimension model (ASSUMED) |
 | MinRank / Support-Minors | ≥ 2¹⁰⁶⁴ | CryptographicEstimators |
-| Brute force on `(S, T)` | 2⁶⁰⁸⁶⁴ | `|GL_mr × GL_mc|` |
+| NQT corank-1 invariant (ePrint 2024/368) | not applicable (square-only; rectangular shape is outside it) | primary source |
+| Brute force on `(S, T)` | 2⁶⁹³⁶⁰ | `|GL_mr × GL_mc|` |
 | Witness (planted-coordinate) search | 2³⁸⁴ classical, 2¹⁹² quantum | `q^{2ℓ}` / Grover |
 
-The cheapest of these — the binding-algebraic attack at about 2²⁰⁸ — sets the
-level, so the candidate is comfortably **≥ 128-bit on the MCE surface**, on a par
-with MEDS L3 (192). We classify it conservatively as 180–192, rounding the ≈ 2²⁰⁸
-point estimate down for its uncertainty and the missing Magma confirmation. The
-algebraic cost is field-independent and depends only on `(mr, mc, k)`; the MEDS
-paper notes it has no quantum speedup, so the quantum figure is comparable.
+The cheapest classical attack is the algebraic one, a band **≈ 180–202** (NEEDS-REVIEW:
+the estimator overshoots MEDS's own published floors by 15–40 bits and msolve degrees
+come in ~2 low, so the true cost is plausibly lower). The rank-collision floor is higher
+(`2²⁴⁰` classical, `2¹⁶⁰` under an optimistic free-QRAM quantum claw) after the `mc = 31`
+reparameterization lifted the codimension to 10. So the candidate is **≥ 128-bit on the
+MCE surface on every axis under the realistic model**, with the algebraic band the figure
+to pin down. The MEDS paper notes the algebraic attack has no quantum speedup. The
+single MCE figure that is not yet sourced from a primary paper is the corank-1 `2²⁴⁰`
+codimension model; see the open items in [`CRYPTANALYSIS.md`](CRYPTANALYSIS.md).
 
 **How the algebraic number was obtained, and why to trust it.** The cost formula is
 the tri-Hilbert-series estimate from the MEDS submission (§4.3.1), reimplemented in

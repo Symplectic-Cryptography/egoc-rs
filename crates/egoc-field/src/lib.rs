@@ -285,10 +285,11 @@ impl<const Q: u64> Eq for Fp2<Q> {}
 pub const Q_MCE: u64 = 4099;
 
 /// M3 candidate Level-1 base prime: `16777259 = 2²⁴ + 43`, prime, `≡ 3 (mod 4)`.
-/// Gives `|E| = q² ≈ 2⁴⁸`, the field size the M3 calibration selected so that
-/// the rectangular-code rank-collision floors land `≥ 2¹⁶⁸`. Bit-security of the
-/// MCE instance remains a TARGET pending an independent estimator run (see
-/// `docs/CRYPTANALYSIS.md`); this constant only fixes the field.
+/// Gives `|E| = q² ≈ 2⁴⁸`, the field used with the `22 × 31`, `k = 46` candidate
+/// (`CodeParams::L1`) so that the rectangular-code rank-collision floor lands at
+/// `2²⁴⁰` classical (`cod = 10`). The algebraic surface (`≈ 180–202`) and the
+/// corank/quantum figures remain NEEDS-REVIEW pending an independent estimator
+/// run (see `docs/CRYPTANALYSIS.md`); this constant only fixes the field.
 pub const Q_MCE_L1: u64 = 16_777_259;
 
 // ---------------------------------------------------------------------------

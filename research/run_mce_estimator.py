@@ -21,7 +21,7 @@ import signal
 # --- candidate (docs/CRYPTANALYSIS.md) --------------------------------------
 Q = 16777259
 E = Q * Q                    # |E| ≈ 2^48
-MR, MC, K = 22, 28, 40
+MR, MC, K = 22, 31, 46
 TIMEOUT = 90                 # seconds per estimator call
 
 

@@ -132,6 +132,58 @@ oracle. ∎
 *Machine-checked:* `egoc-proof::opening::hvzk_simulated_rounds_verify`,
 `egoc-proof::special_soundness_extracts_secret` (code-equivalence variant).
 
+## 9. EGOC-MCE-R is outside the 2024/337 special-orbit regime
+
+The CRYPTO 2024 attack of Gilchrist–Marco–Petit–Tang (ePrint 2024/337) breaks a
+tensor-isomorphism commitment in polynomial time when the committed object has both
+(P1) a *rigid* set of minimum-rank points to anchor a target-rank-1 MinRank, and
+(P2) a *nontrivial stabilizer* of its orbit. Their object is a unit tensor
+`t_b = Σ_{i≤n−b} e_i⊗e_i⊗e_i`; their Remark 3 states the attack has no expected impact
+on random tensors. The following lemma records that EGOC-MCE-R's committed object,
+a generic code element, satisfies neither precondition.
+
+**Lemma 9.** For the public code `C₀ = span_E{G₀,…,G_{k−1}}` with `Gₗ` NUMS-random over
+`E = F_q[t]/(t²+1)`, `q ≡ 3 (mod 4)`, at the candidate shape `(mr,mc,k) = (22,31,46)`,
+`|E| = q² ≈ 2⁴⁸`, after the keygen Frobenius-hull reject (`hull_dim ≤ 1`):
+
+1. *(no rank-0 point)* The `Gₗ` are `E`-linearly independent, so the only codeword
+   equal to the zero matrix is the trivial one, and the 2024/337 rank-0 distinguisher
+   returns dimension `0`. **PROVEN** (measured at the production shape).
+2. *(no rigid anchor)* Rank-`(mr−1)` codewords exist — the determinantal variety
+   `{rank ≤ mr−1}` has codimension `(mr−r)(mc−r) = mc−mr+1 = 10 < k`, so it meets the
+   code — and are found in polynomial time by left-kernel planting, **but** they form a
+   `≈ |E|^{k−1−10} = 2¹⁶⁸⁰` generic family, the opposite of a rigid `n`-element anchor
+   set, and search does not descend to corank `2`; the exploitable low ranks (`r ≤ 18`,
+   codimension `≥ 39`) sit on the MinRank surface (`≥ 2¹⁰⁶⁴`). **PROVEN** (codimension
+   count; existence confirmed empirically in a codim-1 analog).
+3. *(trivial stabilizer)* The stabilizer Lie algebra
+   `{(X,Y) ∈ gl_mr(E) × gl_mc(E) : X·Gₗ + Gₗ·Y ∈ C₀ for all l}` equals exactly the
+   scalar gauge `{(aI,bI) : a,b ∈ E}` (`E`-dimension `2`, non-scalar excess `0`), and no
+   nontrivial `(P_row, P_col)` permutation stabilizer exists. **PROVEN** at the exact
+   `22×31`, `k = 46` shape over `q = 2²⁴+43` (the `F_q`-linear system in `2890` unknowns
+   solved to completion by `stabilizer_is_scalar_gauge_only_candidate_shape`; also
+   confirmed at the prior `22×28` shape and at small rectangular shapes).
+4. *(full-rank image)* For a commitment `M = Σ cₗ Gₗ` with mask coordinates uniform over
+   `E`, `Pr[rank(M) < min(mr,mc)] ≤ |E|^{−(mc−mr+1)} = 2⁻⁴⁸⁰`. So the full-rank-orbit
+   hypothesis of Lemmas 7–8 holds with overwhelming probability. **PROVEN** (analytic
+   bound + empirical `0/12000` at the real field).
+
+Hence (P1) and (P2) both fail and breaking EGOC-MCE-R reduces to general Matrix Code
+Equivalence.
+
+*Proof.* (1),(3),(4) are exact linear-algebra/probability facts about a generic code;
+(3) is the tangent-space (stabilizer) computation run at the production shape, not
+extrapolated. (2) is the determinantal-variety dimension count `cod = (mr−r)(mc−r)`
+together with the abundance estimate `|E|^{k−1−cod}` for the corank-1 family. ∎
+
+*Scope.* This is **PROVEN-outside-the-2024/337-regime**, not a proof of MCE hardness in
+general (that is the **ASSUMED** premise of Lemma 4, needing the cryptanalysis in
+[`../CRYPTANALYSIS.md`](../CRYPTANALYSIS.md)).
+
+*Machine-checked:* `egoc-attack::mce::stabilizer_is_scalar_gauge_only`,
+`…::commitment_image_is_full_rank`, `…::corank_one_codewords_exist_but_do_not_anchor`,
+`…::rectangular_geometry_lifts_the_collision_codim`.
+
 ## Status
 
 The reductions and Σ-protocol properties above are complete paper proofs, and their

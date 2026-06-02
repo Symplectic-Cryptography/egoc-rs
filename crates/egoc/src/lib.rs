@@ -5,11 +5,13 @@
 //! ## `mce` — EGOC-MCE-R (the elegant `sl(2)`/2T construction)
 //! Hiding reduces to Matrix Code Equivalence (NIST MEDS / Tensor-Isomorphism
 //! family) via a two-sided secret action `C = S·M·T` over the anisotropic
-//! extension `E = F_q[t]/(t²+1)`, `q ≡ 3 mod 4`. At the candidate parameters the
-//! binding (algebraic) attack estimates to ≈2²⁰⁸ and the rank surface to
-//! ≥2¹⁰⁶⁴, putting it in the 180–192 class — a bit estimate via the MEDS
-//! methodology, validated against MEDS L1/L3/L5, pending independent confirmation
-//! (see `docs/SECURITY.md` and `docs/CRYPTANALYSIS.md`). Ships with the
+//! extension `E = F_q[t]/(t²+1)`, `q ≡ 3 mod 4`. At the candidate parameters
+//! (`22 × 31`, `k = 46`, `|E| ≈ 2⁴⁸`) the cheapest classical attack is the
+//! algebraic one at a band `≈ 180–202` (NEEDS-REVIEW); the rank-collision floor is
+//! `2²⁴⁰` classical / `2¹⁶⁰` optimistic-quantum and the MinRank surface `≥ 2¹⁰⁶⁴` —
+//! bit estimates via the MEDS methodology, validated against MEDS L1/L3/L5, pending
+//! independent confirmation (see `docs/SECURITY.md` and `docs/CRYPTANALYSIS.md`).
+//! Ships with the
 //! code-equivalence Σ, a message-hiding ZK opening, batch aggregation, and a
 //! sealed-bid auction demo.
 //!

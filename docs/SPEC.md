@@ -54,9 +54,12 @@ Two presentations:
   MCE problem. This is the mode the zero-knowledge opening uses.
 
 **Hardness (MCE).** Given the public code `C₀ = span{Gₗ}` and the pushed code
-`C = span{S·Gₗ·T}`, recover `(S, T) ∈ GL_mr × GL_mc`. The only orbit invariant of
-the two-sided `GL × GL` action is matrix rank, and the rank-generic regime
-(`k ≪ mr·mc`) carries no low-rank codewords for rank attacks to exploit.
+`C = span{S·Gₗ·T}`, recover `(S, T) ∈ GL_mr × GL_mc`. The orbit invariant of the
+two-sided `GL × GL` action is matrix rank. Corank-1 (rank-`mr−1`) codewords do exist
+and are even findable in polynomial time, but they form a `≈ |E|^{k−1−cod}` generic
+family — not a rigid anchor set — so the binding rank attack is the corank-1 collision
+floor `|E|^{cod/2}` with `cod = mc−mr+1 = 10`, i.e. `2²⁴⁰` classical; deeper rank drops
+sit on the MinRank surface (`≥ 2¹⁰⁶⁴`). See [`CRYPTANALYSIS.md`](CRYPTANALYSIS.md).
 
 **Zero-knowledge opening (`prove_opening`).** A binary-challenge Σ-protocol over `λ`
 rounds proving knowledge of `(S, T)` with `S⁻¹·C·T⁻¹ ∈ span{Gₗ}` — that `C` is a
@@ -108,7 +111,7 @@ zero knowledge). Verification checks the norm bound and `A1·z = w + c·c1`.
 | | MCE candidate | lattice (tuned) |
 |---|---|---|
 | field | `E`, `q = 16777259`, `|E| ≈ 2⁴⁸` | `R_q`, `q = 8380417`, `N = 256` |
-| dimensions | `mr = 22, mc = 28, k = 40, ℓ = 8` | `k_bind = 3, k_msg = 1, l_rand = 5, η = 2` |
+| dimensions | `mr = 22, mc = 31, k = 46, ℓ = 8` | `k_bind = 3, k_msg = 1, l_rand = 5, η = 2` |
 | commitment | hash 32 B, or `C ≈ mr·mc·6` B in code mode | `(c1, c2) ≈ (k_bind + k_msg)·N·⌈log₂q⌉` |
 
 The demo/test parameter sets are smaller and exist only for fast tests and the

@@ -9,7 +9,7 @@ Key facts it makes explicit:
   * MEDS uses SQUARE codes (m=n) and still claims 128/192/256-bit, which proves
     the Leon/collision cheapest-rank-drop (codim 1 for square, floor ~q^{1/2}) is
     NOT the binding attack for MEDS — the ALGEBRAIC (Gröbner) surface is. Our
-    rectangular choice (codim 7) is therefore extra-conservative.
+    rectangular choice (codim 10) is therefore extra-conservative.
   * Our candidate dominates MEDS-L3 (192-bit) on matrix size and code dimension,
     with a ~4x larger field bit-size; the Weil-restricted view dominates MEDS-L5.
 """
@@ -40,9 +40,8 @@ SETS = [
     row("MEDS-L3 (vetted)", 4093, 22, 22, 22, "192"),
     row("MEDS-L5 (vetted)", 2039, 30, 30, 30, "256"),
     None,
-    row("EGOC cand (native E)", 4099 ** 2, 22, 28, 40, "target"),
-    row("EGOC cand (Weil F_q)", 4099, 44, 56, 80, "target~"),
-    row("EGOC fallback (native)", 4099 ** 2, 24, 30, 56, "target"),
+    row("EGOC L1 (native E)", 16777259 ** 2, 22, 31, 46, "target"),
+    row("EGOC L1 (Weil F_q)", 16777259, 44, 62, 92, "target~"),
 ]
 
 hdr = ("set", "Q", "log2Q", "m x n", "k", "fill", "codim", "Leon½", "k·log2Q", "level")

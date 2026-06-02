@@ -66,6 +66,14 @@ impl CodeParams {
 
     /// A structural-demo parameter set. NOT security-calibrated (see M3).
     pub const DEMO: CodeParams = CodeParams { ell: 4, mask_len: 8, mr: 8, mc: 9 };
+
+    /// The security-calibrated candidate (the "OPT1" reparameterization).
+    /// `ell = 8`, `k = 2·8 + 30 = 46`, rectangular `22 × 31` (so the cheapest
+    /// rank-drop codimension is `mc − mr + 1 = 10`). Use with the field
+    /// `Q_MCE_L1` (`|E| ≈ 2⁴⁸`). Rank-collision floors: classical `2²⁴⁰`,
+    /// optimistic free-QRAM `2¹⁶⁰`; the algebraic surface is a band `≈ 180–202`
+    /// (NEEDS-REVIEW). See `docs/CRYPTANALYSIS.md`.
+    pub const L1: CodeParams = CodeParams { ell: 8, mask_len: 30, mr: 22, mc: 31 };
 }
 
 /// Public NUMS generator set `{G_l}`, deterministic from a seed.

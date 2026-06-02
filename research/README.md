@@ -7,7 +7,7 @@ need SageMath, msolve, or CryptographicEstimators.
 
 | Script | Produces | Needs |
 |---|---|---|
-| `meds_algebraic_estimator.py` | MCE algebraic cost ≈ 2²⁰⁸ (and the MEDS L1/L3/L5 validation) | python3 |
+| `meds_algebraic_estimator.py` | MCE algebraic cost ≈ 2²⁰² (and the MEDS L1/L3/L5 validation) | python3 |
 | `meds_compare.py` | comparison of the candidate to the vetted MEDS sets | python3 |
 | `estimate_mlwe_coresvp.py` | dependency-free core-SVP ballpark for the lattice backend | python3 |
 | `run_mce_estimator.py` | MinRank / Support-Minors cost (≥ 2¹⁰⁶⁴) | CryptographicEstimators |
@@ -20,8 +20,10 @@ need SageMath, msolve, or CryptographicEstimators.
 **MCE algebraic cost (the binding attack).** `python3 meds_algebraic_estimator.py`
 reimplements the tri-Hilbert-series estimate from the MEDS submission (§4.3.1) and
 validates it by reproducing all three MEDS levels (L1 → 2¹⁴⁵, L3 → 2²¹⁵,
-L5 → 2²⁹⁵). The candidate `(28, 22, 40)` lands at ≈ 2²⁰⁸. The cost is
-field-independent, so `|E| ≈ 2⁴⁸` does not enter here.
+L5 → 2²⁹⁵). The candidate `(mc, mr, k) = (31, 22, 46)` lands at ≈ 2²⁰² (a band
+`≈ 180–202`, NEEDS-REVIEW — the estimator overshoots the MEDS floors by 15–40 bits and
+msolve degrees come in ~2 low). The cost is field-independent, so `|E| ≈ 2⁴⁸` does not
+enter here.
 
 **Rank surface.** `pip install cryptographic_estimators && python3
 run_mce_estimator.py` gives MinRank/Support-Minors ≥ 2¹⁰⁶⁴ at the candidate. (The
@@ -40,7 +42,7 @@ degree rising (3 → 4 → …) and the cost exhausting memory at small sizes.
 
 ## What is still external
 
-A run of the MEDS team's own Magma estimator would confirm the ≈ 2²⁰⁸ figure with
+A run of the MEDS team's own Magma estimator would confirm the ≈ 2²⁰² figure with
 their tooling rather than our validated reimplementation, and external review of
 decisional-MCE-with-planted-structure remains open. Both are tracked in
 [`../docs/ROADMAP.md`](../docs/ROADMAP.md).

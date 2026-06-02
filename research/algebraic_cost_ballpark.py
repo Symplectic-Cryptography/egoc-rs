@@ -37,7 +37,7 @@ if __name__ == "__main__":
     print("CRUDE bilinear-Gröbner ballpark (NOT a security claim — read the header).")
     print("Measured first-fall at small sizes was ≈5 and did not collapse to 2-3;")
     print("cost exploded 0.3s→20.7s→timeout over 3 tiny sizes.")
-    report("CANDIDATE", 22, 28, 40)
+    report("CANDIDATE", 22, 31, 46)
     report("FALLBACK bump", 24, 30, 56)
     report("bigger", 28, 34, 64)
     print("\nTakeaway: if the true solving degree is ~5 the CANDIDATE may sit BELOW 128 on")

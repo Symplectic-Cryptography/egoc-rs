@@ -13,7 +13,7 @@ size only affects the per-op cost, negligible). So MCE algebraic security depend
 on (n,m,k) only.
 
 We VALIDATE the implementation by reproducing MEDS's claimed levels for its
-(n=m=k) sets, then apply it to the EGOC-MCE-R candidate (n,m,k)=(28,22,40).
+(n=m=k) sets, then apply it to the EGOC-MCE-R candidate (n,m,k)=(31,22,46).
 Pure Python (math.comb exact big ints); no deps.
 """
 
@@ -96,7 +96,7 @@ if __name__ == "__main__":
     report("MEDS L3", 22, 22, 22, "192")
     report("MEDS L5", 30, 30, 30, "256")
     print("\nEGOC-MCE-R candidate (algebraic surface; field |E|≈2^48 irrelevant here):")
-    report("EGOC cand (22x28,k40)", 28, 22, 40)
-    report("EGOC fallback (24x30,k56)", 30, 24, 56)
+    report("EGOC L1 (22x31,k46)", 31, 22, 46)
+    report("(prior 22x28,k40)", 28, 22, 40)
     print("\nNote: if VALIDATION reproduces ~128/192/256, the candidate number is")
     print("credible (same methodology). Leon/MinRank surface is separately ≥2^1064.")
