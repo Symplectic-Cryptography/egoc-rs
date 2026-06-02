@@ -1,0 +1,18 @@
+[package]
+name = "egoc-bench"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+egoc-field  = { path = "../egoc-field" }
+egoc-linalg = { path = "../egoc-linalg" }
+egoc-code   = { path = "../egoc-code" }
+egoc-proof  = { path = "../egoc-proof" }
+egoc-mlwe   = { path = "../egoc-mlwe" }
+rand.workspace = true
+
+[[bin]]
+name = "egoc-bench"
+path = "src/main.rs"

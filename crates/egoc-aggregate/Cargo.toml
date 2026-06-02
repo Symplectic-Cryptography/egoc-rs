@@ -1,0 +1,16 @@
+[package]
+name = "egoc-aggregate"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+egoc-field  = { path = "../egoc-field" }
+egoc-linalg = { path = "../egoc-linalg" }
+egoc-proof  = { path = "../egoc-proof" }
+blake3.workspace = true
+rand_core.workspace = true
+
+[dev-dependencies]
+rand.workspace = true

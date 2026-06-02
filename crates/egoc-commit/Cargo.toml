@@ -1,0 +1,19 @@
+[package]
+name = "egoc-commit"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+egoc-field  = { path = "../egoc-field" }
+egoc-linalg = { path = "../egoc-linalg" }
+egoc-sl2    = { path = "../egoc-sl2" }
+egoc-code   = { path = "../egoc-code" }
+blake3.workspace = true
+rand_core.workspace = true
+subtle.workspace = true
+zeroize.workspace = true
+
+[dev-dependencies]
+rand.workspace = true

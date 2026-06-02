@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use egoc-rs in academic work, please cite it as below."
+title: "egoc-rs: post-quantum commitments with zero-knowledge openings"
+abstract: >-
+  A Rust library of post-quantum commitment schemes with zero-knowledge
+  openings, with two backends: SHADOW-SIS-FIX (a BDLOP commitment over
+  module-LWE/MSIS) and EGOC-MCE-R (a matrix-code commitment whose security
+  reduces to Matrix Code Equivalence, the problem behind MEDS). The matrix
+  encoding is borrowed from Itzhak Bars' two-time physics; the security is not.
+authors:
+  - family-names: nzengi
+    email: zkdaofun@gmail.com
+keywords:
+  - post-quantum cryptography
+  - commitment scheme
+  - zero-knowledge proof
+  - module-LWE
+  - MSIS
+  - matrix code equivalence
+  - MEDS
+  - Rust
+license: MIT OR Apache-2.0
+version: 0.0.1
+date-released: 2026-06-02

@@ -1,0 +1,16 @@
+[package]
+name = "egoc-attack"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+egoc-field  = { path = "../egoc-field" }
+egoc-linalg = { path = "../egoc-linalg" }
+egoc-sl2    = { path = "../egoc-sl2" }
+egoc-code   = { path = "../egoc-code" }
+egoc-commit = { path = "../egoc-commit" }
+blake3.workspace = true
+rand.workspace = true
+rand_core.workspace = true

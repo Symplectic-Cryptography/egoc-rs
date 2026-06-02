@@ -1,0 +1,15 @@
+[package]
+name = "egoc-mlwe"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+blake3.workspace = true
+rand_core.workspace = true
+subtle.workspace = true
+zeroize.workspace = true
+
+[dev-dependencies]
+rand.workspace = true

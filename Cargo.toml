@@ -1,0 +1,36 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/egoc-field",
+    "crates/egoc-sl2",
+    "crates/egoc-linalg",
+    "crates/egoc-code",
+    "crates/egoc-commit",
+    "crates/egoc-mlwe",
+    "crates/egoc-proof",
+    "crates/egoc-aggregate",
+    "crates/egoc-auction",
+    "crates/egoc",
+    "crates/egoc-bench",
+    "crates/egoc-attack",
+]
+
+[workspace.package]
+version = "0.0.1"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+authors = ["nzengi"]
+rust-version = "1.74"
+
+[workspace.dependencies]
+# Maximally native: the ONLY external crypto-adjacent deps are a hash, a CSPRNG,
+# and constant-time / zeroize hygiene. All field/group/code arithmetic is in-house.
+blake3   = "1"
+rand     = "0.8"
+rand_core = "0.6"
+subtle   = "2.5"
+zeroize  = { version = "1.7", features = ["derive"] }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
